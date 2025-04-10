@@ -23,7 +23,7 @@ public class ClientHandler implements Runnable {
             clientHandlers.add(this);
             broadcastMessage("Server: " + clientUserName + " has entered tyhe chat!");
         } catch (IOException e) {
-            closeEveryThing(socket, bufferedWriter, bufferedReader);
+            closeEverything(socket, bufferedWriter, bufferedReader);
         }
     }
 
@@ -36,7 +36,7 @@ public class ClientHandler implements Runnable {
                 messageFromClient = bufferedReader.readLine();
                 broadcastMessage(messageFromClient);
             } catch (IOException e) {
-                closeEveryThing(socket, bufferedWriter, bufferedReader);
+                closeEverything(socket, bufferedWriter, bufferedReader);
                 break;
             }
         }
@@ -51,7 +51,7 @@ public class ClientHandler implements Runnable {
                     clientHandler.bufferedWriter.flush();
                 }
             } catch (IOException e) {
-                closeEveryThing(socket, bufferedWriter, bufferedReader);
+                closeEverything(socket, bufferedWriter, bufferedReader);
             }
         }
     }
@@ -61,7 +61,7 @@ public class ClientHandler implements Runnable {
         broadcastMessage("SERVER: " + clientUserName + " has left the chat.");
     }
 
-    public void closeEveryThing(Socket socket, BufferedWriter bufferedWriter, BufferedReader bufferedReader) {
+    public void closeEverything(Socket socket, BufferedWriter bufferedWriter, BufferedReader bufferedReader) {
         removeClientHandler();
         try {
             if (socket != null) {
